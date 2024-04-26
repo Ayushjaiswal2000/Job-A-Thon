@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Finder</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+</head>
+<body class="bg-cover bg-center" style="background-image: url(/yellow.png)">
+    <nav class="bg-yellow-500 py-4 px-8 fixed w-full top-0 shadow-lg z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <ul class="flex items-center">
+                <li><a href="#" class="text-white hover:text-gray-800 px-3 py-2">Home</a></li>
+                <li><a href="#" class="text-white hover:text-gray-800 px-3 py-2">Jobs</a></li>
+                <li><a href="#" class="text-white hover:text-gray-800 px-3 py-2">Companies</a></li>
+                <li><a href="#" class="text-white hover:text-gray-800 px-3 py-2">About</a></li>
+                <li><a href="#" class="text-white hover:text-gray-800 px-3 py-2">Contact</a></li>
+            </ul>
+            <ul class="flex items-center">
+                <li><a href="#" class="text-white hover:text-gray-800 px-3 py-2">Register</a></li>
+                <li><a href="#" class="text-white hover:text-gray-800 px-3 py-2">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto my-10">
+        <%- body %>
+    </div>
+</body>
+</html>
