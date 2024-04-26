@@ -1,0 +1,75 @@
+
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* height: 100vh; */
+    }
+    form {
+      width: 300px; /* Adjust width as needed */
+      background-color: #f8f9fa; /* Light grey background */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Add shadow */
+    }
+    .form-control {
+      background-color: #f9f1e7; /* Light orange background for fields */
+    }
+    .btn-primary {
+      background-color: #ff9800; /* Orange button */
+      border-color: #ff9800; /* Orange border for button */
+    }
+    .btn-primary:hover {
+      background-color: #f57c00; /* Darker shade of orange on hover */
+      border-color: #f57c00; /* Darker shade of orange border on hover */
+    }
+    h1 {
+      text-align: center; /* Center align the heading */
+      margin-bottom: 20px; /* Add some space below the heading */
+      color: #333;
+      font-size: 1.5rem; /* Set color to dark grey */
+    }
+  </style>
+
+
+
+<div class="container">
+    <form action="/register" method="post" class="p-5">
+      <h1>Register</h1>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="name"
+          aria-describedby="emailHelp"
+          placeholder="Enter Your Name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          name="email"
+          type="email"
+          class="form-control"
+          id="email"
+          aria-describedby="emailHelp"
+          placeholder="Enter Your Email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          id="password"
+          aria-describedby="passwordHelp"
+          placeholder="Enter Your Password"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Register</button>
+    </form>
+  </div>
