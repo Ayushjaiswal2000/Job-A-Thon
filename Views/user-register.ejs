@@ -2,6 +2,7 @@
   <style>
     .container {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       /* height: 100vh; */
@@ -35,6 +36,7 @@
 
 
 <div class="container">
+  <div>
     <form action="/register" method="post" class="p-5">
       <h1>Register</h1>
       <div class="form-group">
@@ -72,4 +74,20 @@
       </div>
       <button type="submit" class="btn btn-primary mt-2">Register</button>
     </form>
+  </div>
+
+    <!-- Error display section -->
+  <!-- Error display section -->
+<div id="error-container" class="mt-4 text-red-600 text-center">
+  <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+    <div class="bg-white shadow rounded p-4">
+      <ul>
+        <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>
+</div>
+
   </div>
