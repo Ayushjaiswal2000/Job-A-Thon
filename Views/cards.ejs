@@ -1,0 +1,88 @@
+<style>
+    .job-card {
+      background-color: #f8f9fa; /* Light grey background */
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Add shadow */
+      transition: transform 0.3s ease-in-out; /* Add transition for smooth hover effect */
+    }
+    .job-card:hover {
+      transform: translateY(-5px); /* Move card up slightly on hover */
+    }
+    .job-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px; /* Rounded corners for the logo */
+    }
+    .job-title {
+      color: #333;
+      font-size: 1.5rem; /* Set color to dark grey */
+      margin-bottom: 0.5rem; /* Add margin bottom */
+    }
+    .job-company {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 0.5rem; /* Add margin bottom */
+    }
+    .job-description {
+      color: #444;
+      font-size: 1rem;
+      margin-bottom: 0.5rem; /* Add margin bottom */
+    }
+    .job-location {
+      color: #777;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem; /* Add margin bottom */
+    }
+    .job-salary {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 0.5rem; /* Add margin bottom */
+    }
+    .job-experience {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 0.5rem; /* Add margin bottom */
+    }
+    .btn-apply {
+      background-color: #ff9800; /* Orange button */
+      border-color: #ff9800; /* Orange border for button */
+      transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Add transition for smooth hover effect */
+    }
+    .btn-apply:hover {
+      background-color: #f57c00; /* Darker shade of orange on hover */
+      border-color: #f57c00; /* Darker shade of orange border on hover */
+    }
+</style>
+
+</head>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% jobs.forEach(job => { %>
+        <!-- Job Card -->
+        <div class="job-card p-6">
+          <img src="<%= job.logo %>" alt="<%= job.company %> Logo" class="mb-4">
+          <h2 class="job-title mb-2"><%= job.title %></h2>
+          <p class="job-company mb-2"><%= job.company %></p>
+          <p class="job-description mb-2"><%= job.description %></p>
+          <p class="job-location mb-2"><%= job.location %></p>
+          <p class="job-salary mb-2"><%= job.salary %></p>
+          <p class="job-experience mb-4"><%= job.experience %></p>
+          <button class="btn-apply w-full py-2 rounded-md text-white font-semibold transition duration-300 ease-in-out">Apply Now</button>
+        </div>
+        <!-- End Job Card -->
+      <% }); %>
+    </div>
+
+    <div id="error-container" class="mt-4 text-red-600 text-center">
+        <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+          <div class="bg-white shadow rounded p-4">
+            <ul>
+              <% errors.forEach(function(error) { %>
+                <li><%= error.msg %></li>
+              <% }); %>
+            </ul>
+          </div>
+        <% } %>
+      </div>
+  </div>

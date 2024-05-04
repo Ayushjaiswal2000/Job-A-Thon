@@ -21,8 +21,9 @@ export default class UserController {
     const user = { email, password };
     const authenticated = authenticateUser(user);
     if (authenticated) {
-      res.json({ success: true, message: "login successful" });
-    } else {
+      // Redirect to "/cards" route after successful login
+      res.redirect("/cards");
+  } else {
       res.json({ success: false, message: "login failed" });
     }
   };

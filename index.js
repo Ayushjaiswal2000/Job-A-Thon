@@ -5,11 +5,13 @@ import session from "express-session";
 import HomeController from "./Controller/Home_Controller.js";
 import UserController from "./Controller/user.controller.js";
 import { formValidationMiddleware } from "./middleware.js";
+import CardController from "./Controller/cards.controller.js";
 
 
 const app = express();
 const homeController =new HomeController();
 const userController = new UserController();
+const cardController = new CardController(); 
 
 
 app.use(express.json());
@@ -26,5 +28,6 @@ app.get("/register", userController.getRegister);
 app.post("/register",formValidationMiddleware, userController.addUser);
 app.get("/login", userController.getLogin);
 app.post("/login", userController.loginUser);
+app.get("/cards", cardController.getCards);
 
 export default app;
