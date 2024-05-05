@@ -29,5 +29,6 @@ app.post("/register",formValidationMiddleware, userController.addUser);
 app.get("/login", userController.getLogin);
 app.post("/login", userController.loginUser);
 app.get("/cards", cardController.getCards);
+app.get("/ViewMore/:id", cardController.viewMore);
 
 export default app;

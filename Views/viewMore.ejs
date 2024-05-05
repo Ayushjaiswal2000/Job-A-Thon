@@ -1,0 +1,162 @@
+<style>
+    /* Custom CSS styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    
+    .banner {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        margin-top: -70px;
+    }
+
+    .job {
+        display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+    .job-title {
+        color: orange !important; /* Text color */
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        font-size: 40px;
+        
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .job-details {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+    .apply-by {
+        font-style: italic;
+        color: #888;
+    }
+
+    .skills {
+        margin-top: 10px;
+    }
+
+    .skill {
+        display: inline-block;
+        background-color: #f0f0f0;
+        color: #555;
+        padding: 5px 10px;
+        border-radius: 15px;
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+    .job-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.company-icon,
+.location-icon,
+.salary-icon,
+.experience-icon,
+.apply-by-icon {
+    color: orange; /* Set icon color to orange */
+    margin-right: 10px;
+}
+
+
+
+.company-name,
+.location,
+.salary,
+.experience,
+.apply-by-date {
+    font-size: 16px; /* Increase font size */
+}
+.btn-apply {
+    
+      background-color: #ff9800; /* Orange button */
+      border-color: #ff9800; /* Orange border for button */
+      transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Add transition for smooth hover effect */
+      width: 40%;
+      margin-top: 10px;
+      
+    }
+    .btn-apply:hover {
+      background-color: #f57c00; /* Darker shade of orange on hover */
+      border-color: #f57c00; /* Darker shade of orange border on hover */
+    }
+    .discription{
+        width: 50%;
+        margin-top: 60px;
+        color: #666;
+        margin-left: 30px;
+    }
+    
+</style>
+
+<div class="container">
+    
+        <!-- Banner Image -->
+        <img src="https://files.codingninjas.com/web-banner-28759.png" alt="Banner Image" class="banner">
+    
+    <main>
+        <!-- Job Details -->
+        <div class="job">
+            <div>
+            <div class="job-title"><%= job.title %></div>
+            <div class="job-details">
+                <div class="job-info">
+                    <i class="fas fa-building company-icon"></i>
+                    <strong class="company-label">Company:</strong>
+                    <span class="company-name"><%= job.company %></span>
+                </div>
+                <div class="job-info">
+                    <i class="fas fa-map-marker-alt location-icon"></i>
+                    <strong class="location-label">Location:</strong>
+                    <span class="location"><%= job.location %></span>
+                </div>
+                <div class="job-info">
+                    <i class="fas fa-money-bill-wave salary-icon"></i>
+                    <strong class="salary-label">Salary:</strong>
+                    <span class="salary"><%= job.salary %></span>
+                </div>
+                <div class="job-info">
+                    <i class="fas fa-briefcase experience-icon"></i>
+                    <strong class="experience-label">Experience:</strong>
+                    <span class="experience"><%= job.experience %></span>
+                </div>
+                <div class="job-info apply-by">
+                    <i class="far fa-calendar-alt apply-by-icon"></i>
+                    <strong class="apply-by-label">Apply By:</strong>
+                    <span class="apply-by-date"><%= job.applyBy %></span>
+                </div>
+                
+            </div>
+            <div class="skills">
+                <strong>Skills:</strong>
+                <% job.skills.forEach(skill => { %>
+                <span class="skill"><%= skill %></span>
+                <% }) %>
+            </div>
+            <button class="btn-apply w-full py-2 rounded-md text-white font-semibold transition duration-300 ease-in-out">Apply Now</button>
+        </div>
+        <div class="discription">
+            <div class="job-info">
+                
+                <p class="description"><%= job.description %></p>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    </main>
+    
+</div>
