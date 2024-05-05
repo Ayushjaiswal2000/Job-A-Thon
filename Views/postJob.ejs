@@ -1,0 +1,54 @@
+<style>/* Add styling for input fields */
+    .post-job-form input[type="text"],
+    .post-job-form textarea,
+    .post-job-form input[type="number"],
+    .post-job-form input[type="date"],
+    .post-job-form input[type="submit"] {
+        width: calc(100% - 22px); /* Adjust width to accommodate padding and border */
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    
+    /* Style submit button */
+    .post-job-form input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+    
+    .post-job-form input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    </style>
+
+
+<div class="container">
+    <h2>Post a Job</h2>
+    <form class="post-job-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="company">Company:</label>
+        <input type="text" id="company" name="company" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="5" required></textarea>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        <label for="salary">Salary:</label>
+        <input type="text" id="salary" name="salary" required>
+        <label for="experience">Experience:</label>
+        <input type="text" id="experience" name="experience" required>
+        <label for="openings">Openings:</label>
+        <input type="number" id="openings" name="openings" min="1" required>
+        <label for="skills">Skills:</label>
+        <input type="text" id="skills" name="skills" placeholder="e.g., JavaScript, React, Node.js, SQL" required>
+        <label for="applyBy">Apply By:</label>
+        <input type="date" id="applyBy" name="applyBy" required>
+        <input type="submit" value="Post Job">
+    </form>
+</div>

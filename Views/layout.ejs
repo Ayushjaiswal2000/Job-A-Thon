@@ -22,12 +22,18 @@
     
 </head>
 <style>
-   body {
+   /* body {
     display: flex;
     flex-direction: column;
-}
+} */
 
-
+/* .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+     
+    } */
 
 
 
@@ -38,7 +44,36 @@
             <ul class="flex items-center">
                 <li><a href="/" class="text-white hover:text-gray-800 px-3 py-2">Home</a></li>
                 <li><a href="/cards" class="text-white hover:text-gray-800 px-3 py-2">Jobs</a></li>
-                <li><a href="#" class="text-white hover:text-gray-800 px-3 py-2">Jobs</a></li>
+                
+                <li class="dropdown relative">
+                    <% if (dropdownContent === "Recruiter") { %>
+                        <a href="#" class="text-white hover:text-gray-800 px-3 py-2 flex items-center">
+                            <span><%= dropdownContent %></span>
+                            <svg class="w-4 h-4 ml-1 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 12a1 1 0 0 1-.707-.293l-4-4a1 1 0 1 1 1.414-1.414L10 10.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4A1 1 0 0 1 10 12z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <ul class="dropdown-content absolute hidden bg-white border rounded-lg mt-2 py-2 w-32">
+                            <li><a href="/login" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Login</a></li>
+                            
+                            <li><a href="#" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Post a Job</a></li>
+                        </ul>
+                    <% } else { %>
+                        <a href="#" class="text-white hover:text-gray-800 px-3 py-2 flex items-center">
+                            <span><%= dropdownContent %></span>
+                            <svg class="w-4 h-4 ml-1 mt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 12a1 1 0 0 1-.707-.293l-4-4a1 1 0 1 1 1.414-1.414L10 10.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4A1 1 0 0 1 10 12z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <ul class="dropdown-content absolute hidden bg-white border rounded-lg mt-2 py-2 w-32">
+                            <li><a href="/logout" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Logout</a></li>
+                            <li><a href="#" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Post a Job</a></li>
+                        </ul>
+                    <% } %>
+                </li>
+                
+                
+                
 
                 
             </ul>
@@ -82,7 +117,25 @@
     </div>
 </footer> -->
 
+<script>
+  document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent event bubbling
+            this.querySelector('.dropdown-content').classList.toggle('hidden');
+        });
+    });
 
+    // JavaScript to hide dropdown menu when clicking anywhere on the page
+    document.addEventListener('click', function(event) {
+        document.querySelectorAll('.dropdown-content').forEach(dropdownContent => {
+            if (!dropdownContent.classList.contains('hidden')) {
+                if (!dropdownContent.parentNode.contains(event.target)) {
+                    dropdownContent.classList.add('hidden');
+                }
+            }
+        });
+    });
+</script>
 
 
 
