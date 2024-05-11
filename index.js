@@ -4,8 +4,9 @@ import expressEjsLayouts from "express-ejs-layouts";
 import session from "express-session";
 import HomeController from "./Controller/Home_Controller.js";
 import UserController from "./Controller/user.controller.js";
-import { formValidationMiddleware } from "./middleware.js";
+import { formValidationMiddleware,authenticationMiddleware } from "./middleware.js";
 import CardController from "./Controller/cards.controller.js";
+import postJobController from "./Controller/postjob.controller.js";
 
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(
 const homeController =new HomeController();
 const userController = new UserController();
 const cardController = new CardController(); 
+const PostJob = new postJobController();
 
 
 app.use(express.json());
@@ -39,5 +41,7 @@ app.get("/logout", userController.logoutUser);
 app.post("/login", userController.loginUser);
 app.get("/cards", cardController.getCards);
 app.get("/ViewMore/:id", cardController.viewMore);
+app.get("/PostJob", authenticationMiddleware, PostJob.getPostjob);
+app.post("/addJob", authenticationMiddleware, PostJob.addJob); 
 
 export default app;

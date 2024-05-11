@@ -19,6 +19,9 @@
       crossorigin="anonymous"
     ></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Ensure Bootstrap JavaScript is included after jQuery -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
 </head>
 <style>
@@ -56,7 +59,7 @@
                         <ul class="dropdown-content absolute hidden bg-white border rounded-lg mt-2 py-2 w-32">
                             <li><a href="/login" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Login</a></li>
                             
-                            <li><a href="#" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Post a Job</a></li>
+                            <li><a href="/PostJob" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Post a Job</a></li>
                         </ul>
                     <% } else { %>
                         <a href="#" class="text-white hover:text-gray-800 px-3 py-2 flex items-center">
@@ -67,7 +70,7 @@
                         </a>
                         <ul class="dropdown-content absolute hidden bg-white border rounded-lg mt-2 py-2 w-32">
                             <li><a href="/logout" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Logout</a></li>
-                            <li><a href="#" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Post a Job</a></li>
+                            <li><a href="/PostJob" class="text-gray-800 hover:bg-gray-200 block px-4 py-2">Post a Job</a></li>
                         </ul>
                     <% } %>
                 </li>

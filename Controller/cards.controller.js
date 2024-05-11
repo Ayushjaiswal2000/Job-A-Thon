@@ -14,7 +14,7 @@ export default class CardController {
         const cardsModel = new CardsModel();
         const job = cardsModel.getJobById(jobId); // Fetch specific job using jobId
         let dropdownContent = req.session.userName || "Recruiter";
-        res.render("viewMore", { job: job, dropdownContent: dropdownContent });
+        res.render("viewMore", { job: job, dropdownContent: dropdownContent , req: req});
     }
 }
 
