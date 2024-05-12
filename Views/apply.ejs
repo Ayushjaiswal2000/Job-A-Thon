@@ -1,0 +1,167 @@
+<style>
+    form {
+      width: 550px; /* Adjust width as needed */
+      background-color: #f8f9fa; /* Light grey background */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Add shadow */
+    }
+    .center{
+      display: flex;
+      justify-content: center;
+    }
+    .form-control {
+      background-color: #f9f1e7; /* Light orange background for fields */
+      width: 100%; /* Make input fields full-width */
+      margin-bottom: 10px; /* Add space between fields */
+      border-radius: 5px; /* Add border radius */
+      border: 1px solid #ddd; /* Add border */
+      padding: 8px; /* Add padding */
+      box-sizing: border-box; /* Include padding and border in element's total width and height */
+    }
+    .btn-primary {
+      background-color: #ff9800; /* Orange button */
+      border-color: #ff9800; /* Orange border for button */
+      width: 100%; /* Make button full-width */
+      padding: 10px; /* Add padding */
+      border-radius: 5px; /* Add border radius */
+      cursor: pointer; /* Change cursor to pointer on hover */
+    }
+    .btn-primary:hover {
+      background-color: #f57c00; /* Darker shade of orange on hover */
+      border-color: #f57c00; /* Darker shade of orange border on hover */
+    }
+    h1 {
+      text-align: center; /* Center align the heading */
+      margin-bottom: 20px; /* Add some space below the heading */
+      color: #333;
+      font-size: 1.5rem; /* Set color to dark grey */
+    }
+    .form-group {
+      width: 100%; /* Make each group full-width */
+    }
+    .row {
+      display: flex; /* Ensure flex display for proper alignment */
+      flex-wrap: wrap; /* Allow wrapping for smaller screens */
+      margin-bottom: 10px; /* Add space between rows */
+    }
+    .row .form-group {
+      width: calc(50% - 10px); /* Adjust width to fit two columns with space between */
+      margin-right: 10px; /* Add space between form groups */
+    }
+    .btn-upload {
+  background-color: #ff9800; /* Orange button for upload */
+  border-color: #ff9800; /* Orange border for button */
+  color: #fff; /* White text color */
+  width: calc(100% - 20px); /* Make button full-width with some margin */
+  padding: 10px; /* Add padding */
+  border-radius: 5px; /* Add border radius */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  text-align: center; /* Center align text */
+  margin: 10px auto; /* Center button horizontally with some margin */
+  display: inline-block; /* Make button inline block */
+}
+.btn-upload:hover {
+  background-color: #f57c00; /* Darker shade of orange on hover */
+  border-color: #f57c00; /* Darker shade of orange border on hover */
+}
+
+/* Hide default file input */
+.form-control-file {
+  display: none;
+}
+
+  </style>
+  
+  <div class="container">
+    <div class="center">
+      <form action="/apply" method="post" enctype="multipart/form-data" class="p-5">
+        <h1>Apply for a Job</h1>
+        <div class="row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+              name="name"
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Enter Your Full Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              name="email"
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Enter Your Email Address"
+              required
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="phone" style="margin-bottom: 10px;">Phone Number</label>
+            <input
+              name="phone"
+              type="tel"
+              class="form-control"
+              id="phone"
+              placeholder="Enter Your Phone Number"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="resume">Upload Resume</label>
+            <label for="resume" class="btn btn-upload">Choose File</label>
+            <input
+              type="file"
+              name="resume"
+              class="form-control-file d-none"
+              id="resume"
+              accept=".pdf,.doc,.docx"
+              required
+            />
+            <small id="resumeHelp" class="form-text text-muted">Accepted formats: PDF, DOC, DOCX</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cover-letter">Cover Letter (optional)</label>
+          <textarea
+            name="cover_letter"
+            class="form-control"
+            id="cover-letter"
+            rows="4"
+            placeholder="Write a brief cover letter explaining your interest and qualifications for the job"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="portfolio">Portfolio (optional)</label>
+          <input
+            name="portfolio"
+            type="url"
+            class="form-control"
+            id="portfolio"
+            placeholder="Enter the URL to your online portfolio (if applicable)"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Apply Now</button>
+      </form>
+    </div>
+  
+    <!-- Error display section -->
+    <div id="error-container" class="mt-4 text-red-600 text-center">
+      <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+        <div class="bg-white shadow rounded p-4">
+          <ul>
+            <% errors.forEach(function(error) { %>
+              <li><%= error.msg %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+    </div>
+  </div>
+  

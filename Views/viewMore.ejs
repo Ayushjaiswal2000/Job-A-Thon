@@ -171,7 +171,7 @@
             <% } %>
         </div>
         <!-- Apply Button -->
-        <button class="btn-apply w-full py-2 rounded-md text-white font-semibold transition duration-300 ease-in-out">Apply Now</button>
+        <a href="/apply" class="btn-apply w-full py-2 rounded-md text-white font-semibold transition duration-300 ease-in-out">Apply Now</a>
     </div>
     <!-- Job Description -->
     <div class="discription">
@@ -181,10 +181,16 @@
     </div>
     <% if (dropdownContent === req.session.userName) { %>
         <div class="edit-delete-icons">
-            <i class="fas fa-edit edit-icon" title="Edit"></i>
-            <i class="fas fa-trash delete-icon" title="Delete"></i>
+            <a href="/editJob/<%= job.id %>" class="edit-link">
+                <i class="fas fa-edit edit-icon" title="Edit"></i>
+            </a>
+            <form action="/delete/<%= job.id %>" method="POST" class="delete-form">
+                <button type="submit" class="delete-button">
+                    <i class="fas fa-trash delete-icon" title="Delete"></i>
+                </button>
+            </form>
         </div>
-        <% } %>
+    <% } %>
 </div>
         
         
