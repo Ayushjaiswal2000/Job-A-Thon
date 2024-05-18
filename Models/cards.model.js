@@ -1,5 +1,5 @@
 import fs from "fs";
-
+import path from "path"; 
 export const jobs = [
     {
         id: "1",
@@ -13,7 +13,7 @@ export const jobs = [
         active: true, // Indicates the job is actively hiring
         applyBy: "2024-06-15", // Application deadline
         openings: 3, // Number of openings
-        applicants: 50, // Number of applicants
+        applicants: 0, // Number of applicants
         skills: ["JavaScript", "React", "Python"] // Required skills
     },
     {
@@ -28,7 +28,7 @@ export const jobs = [
         active: false, // Indicates the job is not actively hiring
         applyBy: "2024-05-31", // Application deadline
         openings: 1, // Number of openings
-        applicants: 20, // Number of applicants
+        applicants: 1, // Number of applicants
         skills: ["Python", "JavaScript", "Java"] // Required skills
     }
 ];
@@ -38,6 +38,33 @@ export const jobs = [
 
 
   export default class CardsModel {
+    constructor() {
+        // Load data from JSON file on initialization
+        this.applications = this.loadDataFromFile('applications.json');
+    }
+
+        // Method to load data from JSON file
+        loadDataFromFile(filename) {
+            try {
+                const data = fs.readFileSync(filename);
+                return JSON.parse(data);
+            } catch (error) {
+                console.error('Error loading data from file:', error);
+                return [];
+            }
+        }
+
+        findApplicationByDetails(jobId, name, email) {
+            // Iterate through each application
+            for (const application of this.applications) {
+                // Check if the application matches the provided jobId, name, and email
+                if (application.jobId === jobId && application.name === name && application.email === email) {
+                    return application; // Return the matching application
+                }
+            }
+    
+            return null; // Return null if no matching application is found
+        }
     fetchCards()  {
       return jobs;
       // Write your code here
@@ -74,11 +101,14 @@ export const jobs = [
 
 
 
+
+
  saveApplicationData = (data) => {
+    const filePath = path.resolve("applications.json");
     // Load existing data (if any)
     let existingData = [];
     try {
-        existingData = JSON.parse(fs.readFileSync("applications.json"));
+        existingData = JSON.parse(fs.readFileSync(filePath));
     } catch (error) {
         // If file doesn't exist or is empty, continue with an empty array
     }
@@ -88,6 +118,10 @@ export const jobs = [
 
     // Write combined data back to the file
     fs.writeFileSync("applications.json", JSON.stringify(existingData, null, 2));
-};
+    const job = jobs.find(job => job.id === data.jobId);
+    if (job) {
+        job.applicants++; 
+    }
+}
   }
   

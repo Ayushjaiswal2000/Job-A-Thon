@@ -137,9 +137,12 @@
                 <div class="row"> 
                   <a href="/ViewMore/<%= job.id %>" class="btn-view-more w-full py-2 mt-1 rounded-md text-white font-semibold transition duration-300 ease-in-out">View More</a>
 
-
-                  <a href="/apply" class="btn-apply w-1/2 py-2 rounded-md text-white font-semibold transition duration-300 ease-in-out">Apply Now</a></div>
-               
+                  <% if (dropdownContent === "Recruiter") { %>
+                  <a href="/apply/<%= job.id %>" class="btn-apply w-1/2 py-2 rounded-md text-white font-semibold transition duration-300 ease-in-out">Apply Now</a>
+                
+                  <% }%>
+                </div>
+            
             </div>
             <!-- End Job Card -->
         <% }); %>

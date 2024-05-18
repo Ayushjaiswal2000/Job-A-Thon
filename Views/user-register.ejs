@@ -30,6 +30,12 @@
       color: #333;
       font-size: 1.5rem; /* Set color to dark grey */
     }
+    .custom-width-200 {
+  width: 400px;
+}
+.link-color {
+    color: #f57c00;
+  }
   </style>
 
 
@@ -77,16 +83,20 @@
 
     <!-- Error display section -->
   <!-- Error display section -->
-<div id="error-container" class="mt-4 text-red-600 text-center">
-  <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
-    <div class="bg-white shadow rounded p-4">
-      <ul>
-        <% errors.forEach(function(error) { %>
-          <li><%= error.msg %></li>
-        <% }); %>
-      </ul>
-    </div>
-  <% } %>
-</div>
-
+  <div class="center mt-4">
+    <p class="text-center">
+      Already Registered? <a href="/login" class="link-color">Login Here</a>
+    </p>
+  </div>
+  <div id="error-container" class="mt-4 flex justify-center text-red-600 text-center">
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+      <div class="bg-white shadow rounded p-4 custom-width-200">
+        <ul>
+          <% errors.forEach(function(error) { %>
+            <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+      </div>
+    <% } %>
+  </div>
   </div>

@@ -1,0 +1,74 @@
+<style>
+   
+
+   
+        .success-message, .error-message {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .success-message i, .error-message i {
+            font-size: 4rem;
+        }
+        .success-message i {
+            color: #28a745;
+        }
+        .error-message i {
+            color: #dc3545;
+        }
+        .success-message h1, .error-message h1 {
+            font-size: 2rem;
+            margin: 20px 0;
+            color: #333;
+        }
+        .success-message p, .error-message p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .success-image, .error-image {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+        .actions .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+</style>
+
+
+<div class="container">
+    <% if (typeof errorMessage !== 'undefined') { %>
+        <div class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <h1>Application Error</h1>
+            <p><%= errorMessage %></p>
+            <img src="/images/error.png" alt="Error" class="error-image">
+            <div class="actions">
+                <a href="/" class="btn btn-primary">Go to Home</a>
+                <a href="/jobs" class="btn btn-secondary">View More Jobs</a>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <h1>Application Submitted Successfully!</h1>
+            <p>Thank you for applying. We will review your application and get back to you soon.</p>
+            <img src="/images/success.png" alt="Success" class="success-image">
+            <div class="actions">
+                <a href="/" class="btn btn-primary">Go to Home</a>
+                <a href="/jobs" class="btn btn-secondary">View More Jobs</a>
+            </div>
+        </div>
+    <% } %>
+</div>

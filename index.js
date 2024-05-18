@@ -5,10 +5,13 @@ import session from "express-session";
 import HomeController from "./Controller/Home_Controller.js";
 import UserController from "./Controller/user.controller.js";
 import { formValidationMiddleware,authenticationMiddleware } from "./middleware.js";
+import multer from "multer";
 import CardController from "./Controller/cards.controller.js";
 import postJobController from "./Controller/postjob.controller.js";
 import editJobController from "./Controller/editJob.controller.js";
-import multer from "multer";
+import { getApplicationsDataById  } from "./Controller/application.controller.js";
+
+
 
 
 const app = express();
@@ -36,7 +39,7 @@ const upload = multer({ storage: storage });
 
 const homeController =new HomeController();
 const userController = new UserController();
-const cardController = new CardController(); 
+const cardController = new CardController(upload); 
 const PostJob = new postJobController();
 const editjobs=new editJobController();
 
@@ -63,7 +66,27 @@ app.post("/addJob", authenticationMiddleware, PostJob.addJob);
 app.get("/editJob/:id", editjobs.getEditjob);
 app.post("/editJob/:id", editjobs.editJob);
 app.post("/delete/:id", editjobs.deleteJob);
-app.get("/apply", cardController.applyjob);
-app.post("/apply/:jobId", cardController.savejob);
+app.get("/apply/:id", cardController.applyJob);
+app.post("/apply/:id", cardController.savejob);
+
+
+app.get("/application/:id", async (req, res) => {
+  try {
+    let dropdownContent = req.session.userName || "Recruiter";
+    const id = req.params.id; // Extract the id parameter from the request URL
+    
+    const applications = await getApplicationsDataById(id);
+
+    // Render the application.ejs template with the applications data
+    res.render('application', { applications, dropdownContent });
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+ 
+
+
 export default app;
 export { upload };

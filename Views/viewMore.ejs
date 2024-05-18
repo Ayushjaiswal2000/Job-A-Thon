@@ -92,11 +92,14 @@
 }
 .btn-apply {
     
-      background-color: #ff9800; /* Orange button */
+    background-color: #ff9800; /* Orange button */
       border-color: #ff9800; /* Orange border for button */
       transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Add transition for smooth hover effect */
-      width: 40%;
-      margin-top: 10px;
+     
+        width: 50%; /* Adjust width as needed */
+         /* Center the button horizontally */
+        display: block; /* Ensure it takes the width specified */
+        text-align: center; /* Center the text within the button */
       
     }
     .btn-apply:hover {
@@ -148,6 +151,29 @@
                 <strong class="experience-label">Experience:</strong>
                 <span class="experience"><%= job.experience %></span>
             </div>
+            <% if (dropdownContent === req.session.userName) { %>
+                <div class="job-info">
+                    <i class="fas fa-users experience-icon"></i> <!-- Different icon class -->
+                    <a href="/application/<%= job.id %>" class="experience-label"> <!-- Anchor wrapping the label -->
+                        <strong>Applicants:</strong>
+                    </a>
+                    <span class="experience">
+                        <%= job.applicants %>
+                    </span>
+                </div>
+            <% } else { %>
+                <div class="job-info">
+                    <i class="fas fa-users experience-icon"></i> <!-- Different icon class -->
+                    <span class="experience-label"> <!-- Plain text label -->
+                        <strong>Applicants:</strong>
+                    </span>
+                    <span class="experience">
+                        <%= job.applicants %>
+                    </span>
+                </div>
+            <% } %>
+            
+            
             <!-- Apply By -->
             <div class="job-info apply-by">
                 <i class="far fa-calendar-alt apply-by-icon"></i>
@@ -171,7 +197,9 @@
             <% } %>
         </div>
         <!-- Apply Button -->
-        <a href="/apply" class="btn-apply w-full py-2 rounded-md text-white font-semibold transition duration-300 ease-in-out">Apply Now</a>
+        <% if (dropdownContent === "Recruiter") { %>
+        <a href="/apply/<%= job.id %>" class="btn-apply w-1/2 py-2 rounded-md text-white font-semibold transition duration-300 ease-in-out">Apply Now</a>
+        <% }%>
     </div>
     <!-- Job Description -->
     <div class="discription">

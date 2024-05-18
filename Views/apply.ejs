@@ -72,10 +72,10 @@
 }
 
   </style>
-  
+  <% if (job) { %>
   <div class="container">
     <div class="center">
-      <form action="/apply" method="post" enctype="multipart/form-data" class="p-5">
+      <form action="/apply/<%= job.id %>" method="post" enctype="multipart/form-data" class="p-5">
         <h1>Apply for a Job</h1>
         <div class="row">
           <div class="form-group">
@@ -164,4 +164,4 @@
       <% } %>
     </div>
   </div>
-  
+  <% } %>
