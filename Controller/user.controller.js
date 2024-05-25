@@ -2,13 +2,13 @@ import { registerUser, authenticateUser,users } from "../Models/user.model.js";
 
 export default class UserController {
   getRegister(req, res, next) {
-    let dropdownContent = "Recruiter"; // or any default content you prefer
-    res.render("user-register", { dropdownContent });
+    let dropdownContent = "Guest"; // or any default content you prefer
+    res.render("user-register", { dropdownContent,req:req });
 };
 
 getLogin(req, res, next) {
-    let dropdownContent = "Recruiter"; // or any default content you prefer
-    res.render("user-login", { dropdownContent });
+    let dropdownContent = "Guest"; // or any default content you prefer
+    res.render("user-login", { dropdownContent , req:req });
 };
 
   addUser = (req, res) => {
@@ -48,7 +48,7 @@ getLogin(req, res, next) {
         } else {
             // Redirect to the login page after successful logout
            
-            
+          
             res.redirect("/login");
         }
     });

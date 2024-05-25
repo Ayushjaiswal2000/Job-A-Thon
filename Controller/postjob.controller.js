@@ -6,9 +6,9 @@ import { jobs } from "../Models/cards.model.js";
 export default class postJobController{
     getPostjob(req, res, next){
 
-            let dropdownContent = req.session.userName || "Recruiter";
+            let dropdownContent = req.session.userName || "Guest";
             let selectedSkills = [];
-            res.render("postJob", { selectedSkills: selectedSkills, dropdownContent: dropdownContent });
+            res.render("postJob", { selectedSkills: selectedSkills, dropdownContent: dropdownContent,req:req });
         
 
     }

@@ -43,15 +43,15 @@ export default class CardController {
     getCards(req, res, next) {
         const cardsModel = new CardsModel();
         const jobs = cardsModel.fetchCards();
-        let dropdownContent = req.session.userName || "Recruiter";
-        res.render("cards", { jobs: jobs, dropdownContent: dropdownContent });
+        let dropdownContent = req.session.userName || "Guest";
+        res.render("cards", { jobs: jobs, dropdownContent: dropdownContent,req:req });
     }
 
     viewMore(req, res, next){
         const jobId = req.params.id; // Extract jobId from request parameters
         const cardsModel = new CardsModel();
         const job = cardsModel.getJobById(jobId); // Fetch specific job using jobId
-        let dropdownContent = req.session.userName || "Recruiter";
+        let dropdownContent = req.session.userName || "Guest";
         res.render("viewMore", { job: job, dropdownContent: dropdownContent , req: req});
     }
 
@@ -59,8 +59,8 @@ export default class CardController {
         const jobId = req.params.id; 
         const cardsModel = new CardsModel();
         const job = cardsModel.getJobById(jobId);
-        let dropdownContent = req.session.userName || "Recruiter";
-        res.render("apply", { dropdownContent: dropdownContent , job: job });
+        let dropdownContent = req.session.userName || "Guest";
+        res.render("apply", { dropdownContent: dropdownContent , job: job,req:req });
     }
 
     
@@ -73,13 +73,10 @@ export default class CardController {
         const applicantName = req.body.name;
     
         // Check if the applicant has already applied for this job
-        
-    
-        // Check if an application with the same name, email, and jobId already exists
-        const cardsModel = new CardsModel();
-        const existingApplication = cardsModel.findApplicationByDetails(jobId, applicantName, applicantEmail);
+        const existingApplication = appliedJobs.find(job => job.jobId === jobId && job.applicantName === applicantName && job.applicantEmail === applicantEmail);
         if (existingApplication) {
-            return res.status(400).send("You have already applied for this job with the same name and email.");
+            let dropdownContent = req.session.userName || "Guest";
+            return res.render("alreadyApplied", { jobId: jobId ,  dropdownContent: dropdownContent  });
         }
     
         // Continue with file upload and application data saving
@@ -101,14 +98,21 @@ export default class CardController {
                 portfolio: req.body.portfolio
             };
     
+            const cardsModel = new CardsModel();
             cardsModel.saveApplicationData(formData);
-            req.session.appliedJobs = [...appliedJobs, jobId];
+    
+            req.session.appliedJobs = [...appliedJobs, {
+                jobId: jobId,
+                applicantName: applicantName,
+                applicantEmail: applicantEmail
+            }];
     
             sendApplicationEmail(formData);
-            let dropdownContent = req.session.userName || "Recruiter";
+            let dropdownContent = req.session.userName || "Guest";
             res.render("Applied", { dropdownContent: dropdownContent });
         });
     }
+    
     
     
 

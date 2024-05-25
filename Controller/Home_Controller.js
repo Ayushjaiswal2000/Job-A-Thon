@@ -5,8 +5,8 @@
         if (req.session.userName) {
             dropdownContent = req.session.userName;
         } else {
-            dropdownContent = "Recruiter";
+            dropdownContent = "Guest";
         }
-        res.render('Home', { dropdownContent });
+        res.render('Home', { dropdownContent ,req:req});
     }
  }

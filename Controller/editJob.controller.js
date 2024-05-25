@@ -7,7 +7,7 @@ export default class editJobController{
           const jobId = req.params.id; // Extract jobId from request parameters
            const cardsModel = new CardsModel();
            const job = cardsModel.getJobById(jobId);
-            let dropdownContent = req.session.userName || "Recruiter";
+            let dropdownContent = req.session.userName || "Guest";
             let selectedSkills = [];
             res.render("editJob", { selectedSkills: selectedSkills, dropdownContent: dropdownContent, job: job, req: req });
         
