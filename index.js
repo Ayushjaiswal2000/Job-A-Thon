@@ -51,7 +51,7 @@ app.use(urlencoded({ extended: true }));
 
 app.use(expressEjsLayouts);
 app.set("view engine", "ejs");
-app.set("Views", path.resolve("Views"));
+app.set("views", path.resolve("Views"));
 
 app.get("/",homeController.getHome);
 app.get("/register", userController.getRegister);
