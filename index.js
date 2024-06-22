@@ -72,7 +72,7 @@ app.post("/apply/:id", cardController.savejob);
 
 app.get("/application/:id", async (req, res) => {
   try {
-    let dropdownContent = req.session.userName || "Recruiter";
+    let dropdownContent = req.session.userName || "Guest";
     const id = req.params.id; // Extract the id parameter from the request URL
     
     const applications = await getApplicationsDataById(id);
